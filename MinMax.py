@@ -8,6 +8,7 @@ def minmax(minmax_board, player, depth, alpha, beta):
     #hvis dette er 0 vil det si at det har vært en draw mens hvis det er ett vin vil det ha en verdi opp til 22
 
     if [True] in check_win(minmax_board):
+        print("vinneren er", player, 22-depth)
         return player * (22 - depth)+1, None
     elif(22 - depth) == 0:
         return player * (22 - depth), None

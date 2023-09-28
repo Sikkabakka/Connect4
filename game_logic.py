@@ -1,6 +1,5 @@
 #Alt om selve spillet, som å gjøre moves, lagre positionen og sjekke for om man har vunne
 
-
 def check_top_of_column(column):
     for i, piece in enumerate(column):
         if piece != 0:
@@ -15,7 +14,6 @@ def remove_piece(board, column):
     return board
 
 def check_win(board):
-    
     return [check_column(board), check_diagonal(board), check_row(board)]
 
 def check_draw(board):
@@ -47,14 +45,17 @@ def check_column(board):
     columns = [[row[i]for row in board]for i in range(0,6)]
     possible_wins = [[column[x+i]for x in range(0, 4)]for column in columns for i in range(0, 3) ]
     decision = [True for possible_win in possible_wins if len(set(possible_win)) == 1 if possible_win[0] != 0]
-    return decision
+    return true_in_list(decision)
 
 def check_row(board):
     possible_wins = [[row[x+i]for x in range(0, 4)] for row in board for i in range(0, 3)]
    
     decision = [True for possible_win in possible_wins if len(set(possible_win)) == 1 if possible_win[0] != 0]
-    return decision
-
+    return true_in_list(decision)
+def true_in_list(liste):
+    for i in liste:
+        if i == True:
+            return True
 def check_diagonal(board):
     #insane list comprehension
     
@@ -71,9 +72,7 @@ def check_diagonal(board):
     
     decision = [True for possible_win in possible_wins if len(set(possible_win)) == 1 if possible_win[0] != 0]
     
-    return decision
+    return true_in_list(decision)
 def check_legal_moves(board):
     return[i for i in range (len(board))  if board[i][0] == 0]
          
-
-

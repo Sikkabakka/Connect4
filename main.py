@@ -19,23 +19,33 @@ def game_loop():
                     [0,  0,  0,  0,  1,  1],
                     [0,  0,  0,  0,  1,  1],
                     [0,  0,  0,  0,  0, -1]]
-    
-    while [True] not in check_win(prove_brett) and check_draw(prove_brett):
+    prove_brett2 = [[1, -1,  1,  1,  -1, -1],
+                    [0,  0,  0,  0,  1, -1],
+                    [0, -1,  1, -1,  1, -1],
+                    [0,  1, -1, -1, -1,  1],
+                    [1, -1,  1,  1,  1, -1],
+                    [0,  0, -1, -1,  1,  1],
+                    [0,  0,  1, -1,  1, -1]]
+
+    brettet = copy.deepcopy(prove_brett2)
+    while True not in check_win(brettet) and check_draw(brettet): 
+        kopi = copy.deepcopy(brettet)
+        print_board(turn_board(change_board_characters(kopi)))
         alpha = -math.inf
         beta = math.inf
-        depth = 11
+        depth = 17
         move = int(input("Hvilken kollone vil du plassere brikken din"))
 
-        prove_brett = add_piece(prove_brett, move, 1)
+        brettet = add_piece(brettet, move, 1)
 
-        score, AImove = minmax(prove_brett, -1,depth, alpha, beta)
+        score, AImove = minmax(brettet, -1,depth, alpha, beta)
  
-        prove_brett = add_piece(prove_brett, AImove, -1)
-        kopi = copy.deepcopy(prove_brett)
-        
+        brettet = add_piece(brettet, AImove, -1)
+       
+        kopi = copy.deepcopy(brettet)
         print_board(turn_board(change_board_characters(kopi)))
         print("movedone:", AImove, score)
-        print(prove_brett, "dette er provebrett")
-    print(kopi)
+        print(brettet, "dette er provebrett")
+    print_board(turn_board(change_board_characters(kopi)))   
     print("spillet er over")
 game_loop()
