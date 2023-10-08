@@ -1,5 +1,11 @@
 #Alt om selve spillet, som å gjøre moves, lagre positionen og sjekke for om man har vunne
-
+prove = [   [0,  0,   0,   0, -1,  1],
+            [0,  0,   0,   0,  0, -1],
+            [1, -1,  -1,  -1,  1, -1],
+            [1, -1,  -1,   1, -1,  1],
+            [0,  0,   0,  -1,  1,  1],
+            [0,  0,  -1,   1,  1,  1],
+            [0,  0,   0,   0,  0, -1]]
 def check_top_of_column(column):
     for i, piece in enumerate(column):
         if piece != 0:
@@ -57,22 +63,30 @@ def true_in_list(liste):
         if i == True:
             return True
 def check_diagonal(board):
-    #insane list comprehension
+
     
     right_diagonals_rows = [[board[i+x+1][x]for x in range(0, 6-i)]for i in range(0, 6)]
+
     rigth_diagonals_columns = [[board[x][i + x]for x in range(0, 6-i)]for i in range(0, 6)]
-    left_diagonals_rows = [[board[i +5-x][x]for x in range(5, i, -1)]for i in range(0, 6)]
-    left_diagonals_columns = [[board[x][i-x] for x in range(0, i+1)]for i in range(5, -1, -1)]
+
+
+    left_diagonals_rows = [[board[i-x][x]for x in range(0, i+1)]for i in range(5, -1, -1)]
+   
+
+    left_diagonals_columns = [[board[x][i+6-x] for x in range(6, i, -1)] for i in range(0, 5)]
+
+
+
     
     diagonals = right_diagonals_rows + rigth_diagonals_columns + left_diagonals_rows + left_diagonals_columns
 
     diagonals = [each for each in diagonals if len(each) >= 4]
     
     possible_wins = [[diagonal[x+i]for x in range(0, 4)] for diagonal in diagonals for i in range(0, len(diagonal)-3)]
+
     
     decision = [True for possible_win in possible_wins if len(set(possible_win)) == 1 if possible_win[0] != 0]
-    
+
     return true_in_list(decision)
 def check_legal_moves(board):
     return[i for i in range (len(board))  if board[i][0] == 0]
-         
