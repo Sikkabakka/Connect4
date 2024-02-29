@@ -7,6 +7,7 @@ import copy
 #vet ikke helt hvorfor dette skjer men sånn er det bare.
 
 def minmax(minmax_board, player, depth, alpha, beta):
+    
     #hvis spillet er over skal return hvor dypt spillet er kommet
     #hvis dette er 0 vil det si at det har vært en draw mens hvis det er ett vin vil det ha en verdi opp til 22
     copy_board = copy.deepcopy(minmax_board)
@@ -82,11 +83,11 @@ def minmax(minmax_board, player, depth, alpha, beta):
 
             continue
         
-        #alpha skal være en verdi som sier
-        # alpha = max(alpha, value) 
-        # if alpha >= beta:
-        #     print(alpha, beta)
-        #     return alpha, best_move 
+
+        alpha = max(alpha, value) 
+        if alpha >= beta:
+
+            return alpha, best_move 
 
     return value, best_move
 

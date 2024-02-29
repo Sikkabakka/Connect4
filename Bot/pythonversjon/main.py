@@ -5,12 +5,12 @@ import copy
 #funker sånn halveis, men prøv prove_brett og ta nummer 1 her vil den få feil, så finn ut hva som skjer
 
 def game_loop():
-    brettet =[[0, 0, 0, 0, 0, 0],
-              [0, 0, 0, 0, 0, 0],
-              [0, 0, 0, 0, 0, 0],
-              [0, 0, 0, 0, 0, 0],
-              [0, 0, 0, 0, 0, 0],
-              [0, 0, 0, 0, 0, 0],
+    brettet =[[0, 0, 0, 0, 0, -1],
+              [0, 0, 0, 0, 0, 1],
+              [0, -1, 1, -1, 1, -1],
+              [-1, 1, -1, 1, -1, 1],
+              [0, 1, -1, 1, 1, 1],
+              [0, 0, 0, 0, -1, -1],
               [0, 0, 0, 0, 0, 0]]
     prove_brett = [ [0,  0,  0,  0, -1,  1],
                     [0,  0,  0,  0,  0, -1],
@@ -40,8 +40,8 @@ def game_loop():
                     [1, -1,  1,  1,  1, -1],
                     [0,  0, -1, -1,  1,  1],
                     [0,  0,  1, -1,  1, -1]]
-    depth = 9
-    brettet = copy.deepcopy(prove_brett)
+    depth = 11
+    brettet = copy.deepcopy(brettet)
     while True not in check_win(brettet) and check_draw(brettet): 
         mamma = copy.deepcopy(brettet)
         
