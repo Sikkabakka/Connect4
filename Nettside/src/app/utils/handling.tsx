@@ -60,7 +60,7 @@ export function checkWin(brett: Array<Array<number>>){
         })
     })
 
-
+    console.log(toBitboard(secondboard).toString(2))
     return (checkbitboard(firstboard) || checkbitboard(secondboard) )}
 
 
@@ -71,24 +71,33 @@ function checkbitboard(brett: Array<Array<number>>){
     adjacent =(bitboard &(bitboard >> BigInt(1)));
     if (adjacent &(adjacent>>BigInt(2))) return true;
 
-    adjacent = (bitboard &(bitboard >>BigInt(6)));
+    adjacent = (bitboard &(bitboard >>BigInt(7)));
+    if (adjacent &(adjacent>>BigInt(14))) return true;
+
+    adjacent = (bitboard &(bitboard>>BigInt(6)));
     if (adjacent &(adjacent>>BigInt(12))) return true;
 
-    adjacent = (bitboard &(bitboard>>BigInt(5)));
-    if (adjacent &(adjacent>>BigInt(10))) return true;
-
-    adjacent = (bitboard &(bitboard>>BigInt(7)));
-    if (adjacent &(adjacent>>BigInt(14))) return true;
+    adjacent = (bitboard &(bitboard>>BigInt(8)));
+    if (adjacent &(adjacent>>BigInt(16))) return true;
 
     return false;
 }
 
 function toBitboard(brett: Array<Array<number>>){
     const flatbrod = brett.flat()
-
+    let extra = 0;
     let bitboard = BigInt(0)
     for (let i = 0; i<flatbrod.length; i++){
-        bitboard |= BigInt(flatbrod[i])<<BigInt(i)
+        if (i%6=== 0){ 
+            extra +=1;
+            bitboard |= BigInt(flatbrod[i])<<BigInt(i)
+        }
+        else{
+            bitboard |= BigInt(flatbrod[i])<<BigInt(i +extra)
+        }
+        
+        
+        
     }
 
     return bitboard;

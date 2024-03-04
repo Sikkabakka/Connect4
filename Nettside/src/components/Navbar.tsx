@@ -14,10 +14,11 @@ const Navbar = () => {
                 <h1>Home</h1>
                 </div>
             </a>
-            <div className="hover:scale-95 hover:text-black">
-              <h1>How to play</h1>
-            </div>
-          
+            <a href='./rules'>
+              <div className="hover:scale-95 hover:text-black">
+                <h1>How to play</h1>
+              </div>
+            </a>
           </div>
           <div  className="w-1/5 ">
               <h1>Sign in</h1>
