@@ -34,6 +34,16 @@ export function placePiece(board : Array<Array<number>>, team: number, index :nu
         
     })
     return newboard;
+} 
+
+    
+export async function botPlacePiece(brett: Array<Array<number>>): Promise<number> {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            let c = Math.floor(Math.random() * 7);
+            resolve(c);
+        }, 1000);
+    });
 }
 
 
@@ -90,16 +100,12 @@ function toBitboard(brett: Array<Array<number>>){
     for (let i = 0; i<flatbrod.length; i++){
         if (i%6=== 0){ 
             extra +=1;
-            bitboard |= BigInt(flatbrod[i])<<BigInt(i)
+            bitboard |= BigInt(flatbrod[i])<<BigInt(i+extra)
         }
         else{
             bitboard |= BigInt(flatbrod[i])<<BigInt(i +extra)
-        }
-        
-        
-        
+        }   
     }
-
     return bitboard;
     
 }

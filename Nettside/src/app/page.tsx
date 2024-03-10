@@ -10,7 +10,7 @@ const page = () => {
             
           <Play text="Against Friends" link="./playfriends" />
             <div className="center flex">
-              <h2 className="text-xl text-orange-500"> -- Play -- </h2>
+              <h2 className="text-xl text-accent"> -- Play -- </h2>
             </div>
           <Play text="Against AI" link="./playBot" />
 
@@ -24,7 +24,7 @@ const page = () => {
 function Play({ text, link = "" } : { text: string, link?: string} ){
     return (
       <a href={link} className='h-full lg:w-1/3 md:w-2/4 sm:w-3/5 center flex'>
-        <div className="w-3/4 aspect-square m-4 bg-violet-700 center flex rounded hover:bg-violet-800">
+        <div className="w-3/4 aspect-square m-4 bg-secondary center flex rounded bg-blend-normal hover:brightness-95">
           <p className="text-2xl center flex">
             {text}
           </p>
