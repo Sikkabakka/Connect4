@@ -7,8 +7,14 @@ Board brett;
 
 int main() {
     brett.initializeBoard();
-    brett.playsequence("4343233424");
+    brett.playsequence("335455553443322124456677");
     brett.printEveryBoard();
+    brett.transTable.resetTable();
+    // uint8_t testing = 100;
+    // for (int i = 100; (i>-100); i--){
+    //     testing--;
+    //     printf("testing: %d\n", (testing-256));
+    // }
 
 
 
@@ -24,7 +30,6 @@ int main() {
 
 
         if(!brett.canPlay(p)){
-            printf("%s", "continued");
             continue;
         }
         
@@ -39,7 +44,7 @@ int main() {
             brett.printEveryBoard();
             break;
         }
-        
+
         value = brett.negamax(brett.countMoves(), -100, 100);
         brett.flip_board();
         brett.removePiece(p);
@@ -51,11 +56,14 @@ int main() {
          }
      
     }
+  
+
+
     brett.addPiece(best_move);
     brett.flip_board();
     brett.printEveryBoard();
-
-    printf("%d  %d", best_move+1, best_value);
+    // brett.transTable.printValues();
+    printf("\n %d  %d", best_move+1, best_value);
 
     std::cout<<"\n"<<std::endl;
     return 0;

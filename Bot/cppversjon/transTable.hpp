@@ -13,14 +13,15 @@ public:
     
     int maxSize;
     std::vector<Entry> table;
-
+    
     TranspositionTable(int size);
 
-    int hashFunction(uint64_t key);
+    unsigned int hashFunction(uint64_t key);
 
-    void put(uint64_t key, int value);
-
+    void put(uint64_t key, uint8_t value);
+    void resetTable();
     int get(uint64_t key);
+    void printValues();
 };
 
 #endif // TRANSPOSITION_TABLE_HPP

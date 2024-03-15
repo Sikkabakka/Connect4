@@ -352,7 +352,6 @@ int main() {
 
 
         if(!brett.canPlay(p)){
-            printf("%s", "continued");
             continue;
         }
 
@@ -360,7 +359,7 @@ int main() {
         brett.addPiece(p);
         if (brett.checkWin()){
 
-            printf("won here");
+
             best_move = p;
             
             brett.removePiece(p);

@@ -11,12 +11,14 @@ class Board {
 public:
     uint64_t board = 0ULL;
     uint64_t playMask = 0ULL;
-    uint64_t key = 0ULL;
+    uint64_t boardKey = 0ULL;
     uint64_t full_bottom = 8865353597186;
     uint64_t columnLength = 127;
     int best_move = 10;
-    TranspositionTable transTable = TranspositionTable(1);
+   
 
+    TranspositionTable transTable = TranspositionTable(16000057);
+    bool firstcall = false;
     void initializeBoard();
     void putTransTable(uint64_t key, int value);
     void printBoard(unsigned long long bitboard);
@@ -32,6 +34,7 @@ public:
     void removesequence(const std::string& sequence);
     bool checkWin();
     bool checkDraw();
+    int hasWinningMove();
     unsigned long long top_mask(int col);
     unsigned long long bottom_mask(int col);
     unsigned long long full_mask(int col);
