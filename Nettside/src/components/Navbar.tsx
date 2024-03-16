@@ -21,7 +21,7 @@ const Navbar = () => {
             </a>
           </div>
           <div  className="hover:scale-95 hover:text-black w-1/5">
-            <a href="./signIn">
+            <a href="./signingPage">
                 <h1>Sign in</h1>
               </a>
           </div>

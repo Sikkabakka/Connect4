@@ -5,7 +5,7 @@
 #include <vector>
 #include <string>
 #include "transTable.hpp"
-
+#include <algorithm>
 
 class Board {
 public:
@@ -35,6 +35,7 @@ public:
     bool checkWin();
     bool checkDraw();
     int hasWinningMove();
+    int corrected(uint8_t value);
     unsigned long long top_mask(int col);
     unsigned long long bottom_mask(int col);
     unsigned long long full_mask(int col);

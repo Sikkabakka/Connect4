@@ -5,7 +5,7 @@
 #include <ctime>
 #include "transTable.hpp"
 #include "gameLogic.hpp"
-
+#include <algorithm>
 
 
 void Board::initializeBoard(){
@@ -149,6 +149,7 @@ void Board::addPiece(int col){
         return;
     }
 }
+
 void Board::removePiece(int col){
 
     uint64_t top_of_col = (full_mask(col) & boardKey);
@@ -237,35 +238,25 @@ int Board::hasWinningMove(){
     }
     return 0;
 }
+int Board::corrected(uint8_t value){
+    if (value > 42){
+
+        return value-256;
+    }
+    else{
+
+        return value;
+    
+    }
+}
 
 int Board::negamax(int depth, int a, int b){
     //om draw return 0
+    int originA = a;
     nodes++;
 
-    //sjekk om man har ett move som fører til win
-    //hvis vunnet return 22-depth
-
-    //gå gjennom hver index fra midten og utover:
-        //hvis kollonen ikke er full:
-            //set value = - (utfør minmax på et movet(husk å flippe hver verdi fordi da vil det være fra det))
-            //hvis value > best_value: 
-                //best_value = value
-            //hvis a <best_value
-                //a = best_value
-            //hvis a>= b
-                //break
-
-        //ellers continue
-    //return best_value
 
     //fix sånn at den sjekker om motstanderen kan vinne neste runde og blokker
-        // if (hasWinningMove()){
-        //     return 42-depth;
-        // flip_board();
-        // if(hasWinningMove()){
-        //     return -42+depth;
-        // }
-    
     
     flip_board();
   
@@ -290,17 +281,26 @@ int Board::negamax(int depth, int a, int b){
     }
     //sjekk om denne positionen har blitt lagt inn i transTable
 
-    int savedValue = transTable.get(board+playMask);
-    if (savedValue != 100){
-        if (savedValue > 42){
-            a = savedValue-256;
+    // TranspositionTable::Entry savedEntry = transTable.get(board+playMask);
 
-        }
-        else{
-            a = savedValue;
-        }
 
-    }
+    // if (savedEntry.value != 100 && savedEntry.depth >= depth){
+    //     int savedValue = corrected(savedEntry.value);
+
+    //     if (savedEntry.flag == 0){
+    //         return savedValue;
+    //     }
+    //     else if (savedEntry.flag == 2){
+
+    //         a = std::max(a, savedValue);
+    //     }
+    //     else if (savedEntry.flag == 1){
+    //         b = std::min(b, savedValue);
+    //     }
+    //     if (a >= b){
+    //         return savedValue;
+    //     }
+    // }
     int max = 42 - depth-1;
      // max blir max hva man kan opnå siden man ikke kan vinne med engang
     if(b > max){
@@ -332,30 +332,23 @@ int Board::negamax(int depth, int a, int b){
             if(a>=b){
                 break;
             }
-
             }
-
-        else{
-            continue;
-        }
     }  
-    if (savedValue >101){
-        if(savedValue-256 != a && savedValue != 100 ){    
-        printf("forskjellige verdier: %d %d\n", savedValue-256, a);
-        printf("%d \n", transTable.get(board+playMask));
-        printf("hashvalue: %u\n", transTable.hashFunction(board+playMask));
-        savedValue = a;
-    }
-    }
-    else{
-        if(savedValue != a && savedValue != 100 ){    
-            printf("forskjellige verdier: %d %d\n", savedValue, a);
-            printf("%d \n", transTable.get(board+playMask));
-            printf("hashvalue: %u\n", transTable.hashFunction(board+playMask));
-            savedValue = a;
-        }}
-    transTable.put(board+playMask, a);
-    //Er rikitg rett etter input så inputsa blir riktig lagt inn
+    
+    // TranspositionTable::Entry el;
+
+    // if (best_value <= originA){
+    //     el.flag = 1;
+    // } 
+    // else if(best_value >= b){
+    //     el.flag = 2;
+    // } 
+    // else{
+    //     el.flag = 0;
+    // }
+    // el.depth = depth;
+    // transTable.put(board+playMask, a, el.depth, el.flag);
+    
 
     return a;
 }

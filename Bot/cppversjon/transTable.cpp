@@ -9,24 +9,28 @@ unsigned int TranspositionTable::hashFunction(uint64_t key) {
     return key % maxSize;
 }
 
-void TranspositionTable::put(uint64_t key, uint8_t value) {
+void TranspositionTable::put(uint64_t key, uint8_t value, uint8_t depth, uint8_t flag) {
 
     Entry e;
     e.key = key;
     e.value = value;
+    e.depth = depth;
+    e.flag = flag;
     unsigned int index = hashFunction(key);
 
     table[index] = e;
     return;
 }
 
-int TranspositionTable::get(uint64_t key) {
+TranspositionTable::Entry TranspositionTable::get(uint64_t key) {
     unsigned int index = hashFunction(key);
 
     if (table[index].key == key) {
-        return table[index].value +1;
-    } else {
-        return 100;
+        return table[index];
+    } 
+    else {
+        table[index].value = 100; // 100 is a placeholder for "no value found"
+        return table[index];
     }
 }
 

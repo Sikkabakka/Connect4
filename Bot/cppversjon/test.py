@@ -16,5 +16,5 @@ def primenumbercheck(number : int) -> bool:
             return False
     return True
 
-print(nextPrimeNumber(16000000))
-print(primenumbercheck(nextPrimeNumber(16000000)))
+print(nextPrimeNumber(32000000))
+print(primenumbercheck(nextPrimeNumber(32000000)))

@@ -7,9 +7,9 @@ Board brett;
 
 int main() {
     brett.initializeBoard();
-    brett.playsequence("335455553443322124456677");
+    brett.playsequence("23523153343");
     brett.printEveryBoard();
-    brett.transTable.resetTable();
+    // brett.transTable.resetTable();
     // uint8_t testing = 100;
     // for (int i = 100; (i>-100); i--){
     //     testing--;
