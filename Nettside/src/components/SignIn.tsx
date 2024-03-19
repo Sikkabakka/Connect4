@@ -33,13 +33,14 @@ const signin = () => {
  
    
   }
-  const signOut = async () => {
-    
-  }
+  
   return (
 
     <div className="center flex-col flex" style={{ height: "calc(100vh - 80px)" } }> 
-          <h1 className=''>Log into account</h1>
+        <div className='h-40 center flex'>
+           <h1 className='text-5xl pb-10'>Log into account</h1>
+        </div>
+          
           <div className='flex-direction-column flex '>
             
           <form className='flex-col flex h-40 w-40' onSubmit={onSubmit}>
@@ -63,7 +64,7 @@ const signin = () => {
               </input>
               <input 
                 type="submit" 
-                className='border-white border-2 hover:brightness-95 hover:scale-105'>
+                className='border-white border-2 hover:brightness-95 hover:scale-105'>Submit
               </input>
             </form>
           </div>
