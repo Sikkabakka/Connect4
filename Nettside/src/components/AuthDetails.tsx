@@ -32,8 +32,17 @@ const AuthDetails = () => {
         })
     }
   return (
-    <div>{user ? <div><p>{`Signed in as ${user.email}`}</p><button onClick={userSignout}> Signout</button></div> : <p>Not Signed in</p>}</div>
+    <div>
+        {user ? 
+            <div className='w-screen h-fit_content items-center justify-center flex-col flex mt-20 text-2xl'>
+                <p className='mb-4'>{`Signed in as: ${user.email}👍`}</p>
+                <button onClick={userSignout} className='border-4 border-white rounded p-4 hover:brightness-75,  hover:scale-105'> Signout</button>
+            </div> 
+        : <p>Not Signed in</p>}
+    </div>
   )
+
+
 }
 
 export default AuthDetails

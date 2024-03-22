@@ -1,7 +1,7 @@
 "use client";
 import React, { use } from 'react'
 import "../globals.css";
-import { findBottomTile, createBoard, placePiece, checkWin } from '../utils/handling';
+import { findBottomTile, createBoard, placePiece, checkWin, checkDraw } from '../utils/handling';
 import { useState, useEffect } from 'react';
 import { printCustomRoutes } from 'next/dist/build/utils';
 import Image from 'next/image';
@@ -11,18 +11,18 @@ const play = () => {
   const[board, setBoard] = useState(createBoard())
   const [won, setWon] = useState(false)
   const [turn, setTurn] = useState(-1)
-  
+  const [draw, setDraw] = useState(false)
   return (
     <div className ="w-screen h-screen bg-zinc-900" 
       style={{ height: "calc(100vh - 80px)" }}>
-        <Header won={won} turn={turn}></Header>
+        <Header won={won} turn={turn} draw={draw}></Header>
       <div className='justify-center items-start flex h-full w-full'>
-        <Board board = {board} setBoard={setBoard} setWon = {setWon} setTurn = {setTurn} won={won}/>
+        <Board board = {board} setBoard={setBoard} setWon = {setWon} setTurn = {setTurn} won={won} setDraw={setDraw}/>
       </div>
     </div>
   )
 }
-function Header({won, turn}:{won: boolean, turn: number}){
+function Header({won, turn, draw}:{won: boolean, turn: number, draw: boolean}){
   return (
   <div className='w-full center flex'>
     <div className='lg:w-1/2 md:w-3/4 sm:w-5/6 h-20  flex-row items-end justify-between flex mb-1'>
@@ -35,10 +35,13 @@ function Header({won, turn}:{won: boolean, turn: number}){
         style={turn===-1 ? {backgroundColor:"red"}:{backgroundColor:"yellow"}}
         variants={donglevariants}
 
-        animate={won ? "won" : turn===-1 ? "red":"yellow" }
+        animate={(won || draw) ? "won" : turn===-1 ? "red":"yellow" }
       >
         {won && <div className=' h-10 w-10 center flex text-black'>
           Won!
+          </div>}
+        {draw && <div className=' h-10 w-10 center flex text-black'>
+            Draw!
           </div>}
       </motion.div>
       
@@ -99,7 +102,7 @@ function Piece({team, index, bottomTile, isHovering} : {team: number, index: num
   )}
 
   
-function Column({column, team, board, index, setBoard, setWon, setTurn, won} : {column: Array<number>, team: number, board : Array<Array<number>>, index : number, setBoard: any, setWon: any, setTurn:any, won:boolean}){
+function Column({column, team, board, index, setBoard, setWon, setTurn, won, setDraw} : {column: Array<number>, team: number, board : Array<Array<number>>, index : number, setBoard: any, setWon: any, setTurn:any, won:boolean, setDraw:any}){
   const [hover, setHover] = useState(false);
   const [bottomTile, setBottomTile] = useState(findBottomTile(column));
   const [full, setfull] = useState(false);
@@ -127,7 +130,7 @@ function Column({column, team, board, index, setBoard, setWon, setTurn, won} : {
 
         setHover(false);
       }}
-      onClick={() => {!full && !won && setBoard(placePiece(board,team, index)); setBottomTile(findBottomTile(column)); setWon(checkWin(board)); }}
+      onClick={() => {!full && !won && setBoard(placePiece(board,team, index)); setBottomTile(findBottomTile(column)); setWon(checkWin(board));  setDraw(checkDraw(board))}}
     >
       {column.map((tile, index) => {
         return (
@@ -139,11 +142,8 @@ function Column({column, team, board, index, setBoard, setWon, setTurn, won} : {
 }
 
 
-//når  mus entrer, finne hvilken kolonne den er i
-//så sette hover på indexen til nederste tile i den kolonnen
 
-
-function Board({board, setBoard, setWon, setTurn, won} : {board : Array<Array<number>>, setBoard : any, setWon : any, setTurn: any, won:boolean}){
+function Board({board, setBoard, setWon, setTurn, won, setDraw} : {board : Array<Array<number>>, setBoard : any, setWon : any, setTurn: any, won:boolean, setDraw:any}){
   const [team, setTeam] = useState(1)
   
 
@@ -166,7 +166,7 @@ function Board({board, setBoard, setWon, setTurn, won} : {board : Array<Array<nu
         {board.map((tile, index) => {
           return (
 
-            <Column key={index} column ={board[index]} team ={team} board = {board} index = {index} setBoard ={setBoard} setWon={setWon} setTurn={setTurn} won={won} />
+            <Column key={index} column ={board[index]} team ={team} board = {board} index = {index} setBoard ={setBoard} setWon={setWon} setTurn={setTurn} won={won} setDraw={setDraw} />
           )
         })}
 

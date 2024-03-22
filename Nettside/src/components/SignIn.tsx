@@ -36,7 +36,7 @@ const signin = () => {
   
   return (
 
-    <div className="center flex-col flex" style={{ height: "calc(100vh - 80px)" } }> 
+    <div className="items-center flex-col flex " style={{ height: "calc(100vh - 80px)" } }> 
         <div className='h-40 center flex'>
            <h1 className='text-5xl pb-10'>Log into account</h1>
         </div>
@@ -45,26 +45,31 @@ const signin = () => {
             
           <form className='flex-col flex h-40 w-40' onSubmit={onSubmit}>
               <label className='mb-1 text-xl'>Email:  </label>
+              
               <input 
                 type="email." 
                 className='mb-5 pl-2 text-black' 
                 name='brukernavn' 
                 placeholder='Email'
                 onChange={(e) => setEmail(e.target.value)}
-                required/>
+                required
+              />
+              
               <label className='text-xl'>Password:  </label>
+              
               <input 
                 type='password' 
                 className='mb-5 pl-2 text-black' 
                 required 
                 onChange={(e) => setPassword(e.target.value)}
                 name="passord"
-                placeholder="Password">
+                placeholder="Password"
+              />
                 
-              </input>
+              
               <input 
                 type="submit" 
-                className='border-white border-2 hover:brightness-95 hover:scale-105'>Submit
+                className='border-white border-2 hover:brightness-95 hover:scale-105'>
               </input>
             </form>
           </div>

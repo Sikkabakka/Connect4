@@ -48,7 +48,12 @@ export async function botPlacePiece(brett: Array<Array<number>>): Promise<number
 
 
 
-
+export function checkDraw(brett: Array<Array<number>>){
+    if (brett.flat().includes(0)){
+        return false;}
+    else 
+    {return true;}
+}
 export function checkWin(brett: Array<Array<number>>){
     let checkboard = JSON.parse(JSON.stringify(brett));
     let firstboard: Array<Array<number>> = createBoard();

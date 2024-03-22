@@ -18,8 +18,8 @@ const config: Config = {
         'text': '#f2dde1',
         'background': '#2e819a',
         'primary': '#FF6D60',
-        'secondary': '#e0bc58',
-        'accent': '#F3E99F',
+        'secondary': '#6a8bdb',
+        'accent': '#619FD2',
        },
        
     },

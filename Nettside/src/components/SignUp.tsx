@@ -36,18 +36,18 @@ const signUp = () => {
 
   return (
 
-    <div className="center flex-col flex" style={{ height: "calc(100vh - 80px)" } }> 
+    <div className="items-center flex-col flex " style={{ height: "calc(100vh - 80px)" } }> 
        <div className='h-40 center flex'>
            <h1 className='text-5xl pb-10'>Make an account</h1>
         </div>
           <div className='flex-direction-column flex '>
           <form className='flex-col flex h-40 w-40' onSubmit={onSubmit}>
-              <label className='mb-1 text-xl'>Username:  </label>
+              <label className='mb-1 text-xl'>Email:  </label>
               <input 
-                type="text" 
+                type="email" 
                 className='mb-5 pl-2 text-black' 
                 name='brukernavn' 
-                placeholder='Username'
+                placeholder='Email'
                 onChange={(e) => setEmail(e.target.value)}
                 required/>
               <label className='text-xl'>Password:  </label>
