@@ -27,7 +27,7 @@ void Board::makeLookUpTable(){
            rf.read(reinterpret_cast<char*>(&value), sizeof(int))) {
         earlyLookUpTable[key] = value;
     }
-    std::cout<< "size after make "<< earlyLookUpTable.size()<<std::endl;
+
     rf.close();
     return;
 }

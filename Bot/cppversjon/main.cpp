@@ -2,21 +2,15 @@
 #include <iostream>
 #include <cstdint>
 #include "transTable.hpp"
-
+#include <string>
 Board brett;
-void play(){
-
-    int x;
-    std::cout<< "Hvor vil du spille?"<< std::endl;
-    std::cin >> x;
-    brett.addPiece(x);
-    brett.printEveryBoard();
+int play(){
 
     int value = -10000;
     int best_value = -100000;
     int best_move = -1;
     brett.flip_board();
-    brett.printEveryBoard();
+
     
     for(int p = 0; p<7; p++ ){
 
@@ -33,7 +27,7 @@ void play(){
             best_move = p;
             
             brett.removePiece(p);
-            brett.printEveryBoard();
+
             break;
         }
 
@@ -41,7 +35,7 @@ void play(){
         brett.flip_board();
         brett.removePiece(p);
         value = -value;
-        printf("midprint: %d  nodes: %llu\n", value, brett.nodes);
+        // printf("midprint: %d  nodes: %llu\n", value, brett.nodes);
         if (value > best_value){
             best_value = value;
             best_move = p;
@@ -53,28 +47,34 @@ void play(){
 
     brett.addPiece(best_move);
     brett.flip_board();
-    brett.printEveryBoard();
 
     printf("\n %d  %d \n", best_move+1, best_value);
+    return best_move;
+}
+
+
+int getBestMove(std::string iBrett){
+    brett.transTable.resetTable();
+    brett.reset_board();
+    brett.playsequence(iBrett);
+    return play();
+}
+
+void testing(){
+    //ikke fikset nå 
+    int x;
+    std::cout<< "Hvor vil du spille?"<< std::endl;
+    std::cin >> x;
+    while (!brett.checkWin() && !brett.checkDraw()){
+        play();
+    }
 
 }
 int main() {
     brett.initializeBoard();
     brett.playsequence("");
     brett.printEveryBoard();
-    // brett.transTable.resetTable();
-    // uint8_t testing = 100;
-    // for (int i = 100; (i>-100); i--){
-    //     testing--;
-    //     printf("testing: %d\n", (testing-256));
-    // }
-
-
-    while (!brett.checkWin() && !brett.checkDraw()){
-        play();
-    }
-
-    
+    brett.transTable.resetTable();
     
     std::cout<<"\n"<<std::endl;
     return 0;

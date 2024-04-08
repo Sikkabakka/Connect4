@@ -8,16 +8,17 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 const play = () => {
-  const[board, setBoard] = useState(createBoard())
-  const [won, setWon] = useState(false)
-  const [turn, setTurn] = useState(1)
   
+  const[board, setBoard] = useState(createBoard());
+  const [won, setWon] = useState(false);
+  const [turn, setTurn] = useState(1);
+  const [boardString, setboardString] = useState("");
   return (
     <div className ="w-screen h-screen bg-zinc-900" 
       style={{ height: "calc(100vh - 80px)" }}>
         <Header won={won} turn={turn}></Header>
       <div className='justify-center items-start flex h-full w-full'>
-        <Board board = {board} setBoard={setBoard} setWon = {setWon} setTurn = {setTurn} won={won} turn = {turn}/>
+        <Board board = {board} setBoard={setBoard} setWon = {setWon} setTurn = {setTurn} won={won} turn = {turn} setboardString = {setboardString}/>
       </div>
     </div>
   )
@@ -139,13 +140,19 @@ function Column({column, board, index, setBoard, setWon, won, setAITurn, aiTurn}
 }
 
 
-function Board({board, setBoard, setWon, setTurn, won, turn} : {board : Array<Array<number>>, setBoard : any, setWon : any, setTurn: any, won:boolean, turn:number}){
-    const [aiTurn, setAITurn] = useState(false)
+function Board({board, setBoard, setWon, setTurn, won, turn, setboardString} : {board : Array<Array<number>>, setBoard : any, setWon : any, setTurn: any, won:boolean, turn:number, setboardString:any}){
+  
+  
+  const [aiTurn, setAITurn] = useState(false)
+
+
+  //bytt tur når endring på brettet skjer
   useEffect(() =>{
         setTurn(turn*-1)
   },[board])
+
+  //når ai 
   useEffect(() => {
-    
         const handleBotMove = async () => {
             const move = await botPlacePiece(board);
             setBoard(placePiece(board, 1, move));
@@ -157,6 +164,7 @@ function Board({board, setBoard, setWon, setTurn, won, turn} : {board : Array<Ar
     }
   }, [aiTurn])
 
+  //hvis noen vinner så setter den tur til den som har vunnet
   useEffect(() => {
     if (won){
       setTurn(turn)
