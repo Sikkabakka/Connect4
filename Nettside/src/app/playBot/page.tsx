@@ -13,12 +13,17 @@ const play = () => {
   const [won, setWon] = useState(false);
   const [turn, setTurn] = useState(1);
   const [boardString, setboardString] = useState("");
+
+  useEffect(() =>{
+    console.log("boardString", boardString)
+  }, [boardString])
+  
   return (
     <div className ="w-screen h-screen bg-zinc-900" 
       style={{ height: "calc(100vh - 80px)" }}>
         <Header won={won} turn={turn}></Header>
       <div className='justify-center items-start flex h-full w-full'>
-        <Board board = {board} setBoard={setBoard} setWon = {setWon} setTurn = {setTurn} won={won} turn = {turn} setboardString = {setboardString}/>
+        <Board board = {board} setBoard={setBoard} setWon = {setWon} setTurn = {setTurn} won={won} turn = {turn} setboardString = {setboardString} boardString={boardString}/>
       </div>
     </div>
   )
@@ -100,7 +105,7 @@ function Piece({team, index, bottomTile, isHovering} : {team: number, index: num
   )}
 
   
-function Column({column, board, index, setBoard, setWon, won, setAITurn, aiTurn} : {column: Array<number>, board : Array<Array<number>>, index : number, setBoard: any, setWon: any, won:boolean, setAITurn:any, aiTurn:boolean}){
+function Column({column, board, index, setBoard, setWon, won, setAITurn, aiTurn, setboardString, boardString} : {column: Array<number>, board : Array<Array<number>>, index : number, setBoard: any, setWon: any, won:boolean, setAITurn:any, aiTurn:boolean, setboardString:any, boardString:string}){
   const [hover, setHover] = useState(false);
   const [bottomTile, setBottomTile] = useState(findBottomTile(column));
   const [full, setfull] = useState(false);
@@ -128,11 +133,11 @@ function Column({column, board, index, setBoard, setWon, won, setAITurn, aiTurn}
 
         setHover(false);
       }}
-      onClick={() => {!won &&!aiTurn && !full && setBoard(placePiece(board,-1, index)); setBottomTile(findBottomTile(column)); setWon(checkWin(board)); !won && setAITurn(true) }}
+      onClick={() => {!won &&!aiTurn && !full && setBoard(placePiece(board,-1, index)); setBottomTile(findBottomTile(column)); setWon(checkWin(board)); setboardString(boardString + (index+1).toString());  !won && setAITurn(true) }}
     >
       {column.map((tile, index) => {
         return (
-          <Piece key={index} team={tile} index={index} bottomTile={bottomTile} isHovering={hover} />
+          <Piece team={tile} index={index} bottomTile={bottomTile} isHovering={hover} />
         )
       })}
     </div>
@@ -140,7 +145,7 @@ function Column({column, board, index, setBoard, setWon, won, setAITurn, aiTurn}
 }
 
 
-function Board({board, setBoard, setWon, setTurn, won, turn, setboardString} : {board : Array<Array<number>>, setBoard : any, setWon : any, setTurn: any, won:boolean, turn:number, setboardString:any}){
+function Board({board, setBoard, setWon, setTurn, won, turn, setboardString, boardString} : {board : Array<Array<number>>, setBoard : any, setWon : any, setTurn: any, won:boolean, turn:number, setboardString:any, boardString:string}){
   
   
   const [aiTurn, setAITurn] = useState(false)
@@ -176,7 +181,7 @@ function Board({board, setBoard, setWon, setTurn, won, turn, setboardString} : {
       <div id = "board" className=' h-full w-full  items-center justify-items-center  bg-blue-400  flex'>
         {board.map((tile, index) => {
           return (
-            <Column key={index} column ={board[index]} board = {board} index = {index} setBoard ={setBoard} setWon={setWon} won={won} setAITurn={setAITurn}  aiTurn={aiTurn}/>
+            <Column column ={board[index]} board = {board} index = {index} setBoard ={setBoard} setWon={setWon} won={won} setAITurn={setAITurn}  aiTurn={aiTurn} setboardString={setboardString} boardString={boardString} />
           )
         })}
 
