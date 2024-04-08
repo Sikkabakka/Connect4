@@ -4,22 +4,14 @@
 #include "transTable.hpp"
 
 Board brett;
+void play(){
 
-int main() {
-    brett.initializeBoard();
-    brett.playsequence("1");
+    int x;
+    std::cout<< "Hvor vil du spille?"<< std::endl;
+    std::cin >> x;
+    brett.addPiece(x);
     brett.printEveryBoard();
-    // brett.transTable.resetTable();
-    // uint8_t testing = 100;
-    // for (int i = 100; (i>-100); i--){
-    //     testing--;
-    //     printf("testing: %d\n", (testing-256));
-    // }
 
-
-
-
-    
     int value = -10000;
     int best_value = -100000;
     int best_move = -1;
@@ -62,9 +54,28 @@ int main() {
     brett.addPiece(best_move);
     brett.flip_board();
     brett.printEveryBoard();
-    // brett.transTable.printValues();
-    printf("\n %d  %d", best_move+1, best_value);
 
+    printf("\n %d  %d \n", best_move+1, best_value);
+
+}
+int main() {
+    brett.initializeBoard();
+    brett.playsequence("");
+    brett.printEveryBoard();
+    // brett.transTable.resetTable();
+    // uint8_t testing = 100;
+    // for (int i = 100; (i>-100); i--){
+    //     testing--;
+    //     printf("testing: %d\n", (testing-256));
+    // }
+
+
+    while (!brett.checkWin() && !brett.checkDraw()){
+        play();
+    }
+
+    
+    
     std::cout<<"\n"<<std::endl;
     return 0;
 }

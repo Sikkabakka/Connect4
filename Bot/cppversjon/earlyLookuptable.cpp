@@ -18,8 +18,10 @@ struct Structure{
     int value;
 };
 
+std::vector<uint64_t> keys;
 Structure splitString(const std::string str){
     std::vector<int> temporary;
+
     std::istringstream iss(str);
     Structure result;
     int number;
@@ -44,17 +46,19 @@ int main(){
     if (file.is_open()){ 
         std::string tp;
         while(getline(file, tp)){
-
             Structure temp = splitString(tp);
             position.playsequence(std::to_string(temp.key));
-            earlyLookUpTable[position.board + position.boardKey] = temp.value;   
+            earlyLookUpTable[position.board + position.playMask + position.boardKey] = temp.value;
+
+            keys.push_back(position.board + position.boardKey + position.playMask);   
+
             position.reset_board();         
         }
         file.close(); 
     }
 
-
-    std::cout << earlyLookUpTable.size() << "hello"<< std::endl;
+    // std::cout << keys.size() << std::endl;
+    std::cout << earlyLookUpTable.size() << " size"<< std::endl;
 
     std::ofstream wf("earlyPosition.dat", std::ios::out | std::ios::binary);
 

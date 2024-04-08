@@ -21,11 +21,13 @@ void Board::makeLookUpTable(){
     earlyLookUpTable.reserve(947761);
     std::ifstream rf("earlyPosition.dat", std::ios::out | std::ios::binary);
 
-    int key, value;
+    uint64_t key;
+    int value;
     while (rf.read(reinterpret_cast<char*>(&key), sizeof(uint64_t)) &&
            rf.read(reinterpret_cast<char*>(&value), sizeof(int))) {
         earlyLookUpTable[key] = value;
     }
+    std::cout<< "size after make "<< earlyLookUpTable.size()<<std::endl;
     rf.close();
     return;
 }
@@ -275,22 +277,25 @@ int Board::negamax(int depth, int a, int b){
     //om draw return 0
     int originA = a;
     nodes++;
-    std::cout<< earlyLookUpTable.size()<<std::endl;
-    // if (depth <8){
-
-    //     try {
-    //         int value = earlyLookUpTable.at(boardKey + board); // If key doesn't exist, it will throw an std::out_of_range exception
-    //     } catch (const std::out_of_range& e) {
-    //         std::cerr << "Key not found: " << e.what() << std::endl;
-    //         }
-
-    // }
+    
+    
    
+    if (depth <8){
 
+            try {
+                int value = earlyLookUpTable.at(boardKey + board + playMask); 
+                flip_board();
+                return value*2;
+                
+            } catch (const std::out_of_range& e) {
+                printEveryBoard();
+                std::cerr << "Key not found: " << e.what() << std::endl;
+                }
+    }
     //fix sånn at den sjekker om motstanderen kan vinne neste runde og blokker
     
     flip_board();
-  
+   
     if (checkDraw()){
         return 0;
     }
