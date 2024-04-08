@@ -6,15 +6,29 @@
 #include "transTable.hpp"
 #include "gameLogic.hpp"
 #include <algorithm>
-
+#include <fstream>
 
 void Board::initializeBoard(){
 
     for(int i = 0; i<49; ++i){
         if ((i%7)==0){
             boardKey |= (1ULL << (i+1));
-    }}}
+    }}
+    makeLookUpTable();
+    }
 
+void Board::makeLookUpTable(){
+    earlyLookUpTable.reserve(947761);
+    std::ifstream rf("earlyPosition.dat", std::ios::out | std::ios::binary);
+
+    int key, value;
+    while (rf.read(reinterpret_cast<char*>(&key), sizeof(uint64_t)) &&
+           rf.read(reinterpret_cast<char*>(&value), sizeof(int))) {
+        earlyLookUpTable[key] = value;
+    }
+    rf.close();
+    return;
+}
 
 void Board::printBoard(unsigned long long bitboard){
     printf("\n");
@@ -126,6 +140,13 @@ void Board::printWithSymbols(){
     }
 void Board::flip_board(){
     board ^= playMask;
+    return;
+}
+void Board::reset_board(){
+    board = 0ULL;
+    playMask = 0ULL;
+    boardKey = 0ULL;
+    initializeBoard();
     return;
 }
 bool Board::canPlay(int &col){
@@ -254,7 +275,17 @@ int Board::negamax(int depth, int a, int b){
     //om draw return 0
     int originA = a;
     nodes++;
+    std::cout<< earlyLookUpTable.size()<<std::endl;
+    // if (depth <8){
 
+    //     try {
+    //         int value = earlyLookUpTable.at(boardKey + board); // If key doesn't exist, it will throw an std::out_of_range exception
+    //     } catch (const std::out_of_range& e) {
+    //         std::cerr << "Key not found: " << e.what() << std::endl;
+    //         }
+
+    // }
+   
 
     //fix sånn at den sjekker om motstanderen kan vinne neste runde og blokker
     
@@ -281,26 +312,26 @@ int Board::negamax(int depth, int a, int b){
     }
     //sjekk om denne positionen har blitt lagt inn i transTable
 
-    // TranspositionTable::Entry savedEntry = transTable.get(board+playMask);
+    TranspositionTable::Entry savedEntry = transTable.get(board+playMask);
 
 
-    // if (savedEntry.value != 100 && savedEntry.depth >= depth){
-    //     int savedValue = corrected(savedEntry.value);
+    if (savedEntry.value != 100 && savedEntry.depth >= depth){
+        int savedValue = corrected(savedEntry.value);
 
-    //     if (savedEntry.flag == 0){
-    //         return savedValue;
-    //     }
-    //     else if (savedEntry.flag == 2){
+        if (savedEntry.flag == 0){
+            return savedValue;
+        }
+        else if (savedEntry.flag == 2){
 
-    //         a = std::max(a, savedValue);
-    //     }
-    //     else if (savedEntry.flag == 1){
-    //         b = std::min(b, savedValue);
-    //     }
-    //     if (a >= b){
-    //         return savedValue;
-    //     }
-    // }
+            a = std::max(a, savedValue);
+        }
+        else if (savedEntry.flag == 1){
+            b = std::min(b, savedValue);
+        }
+        if (a >= b){
+            return savedValue;
+        }
+    }
     int max = 42 - depth-1;
      // max blir max hva man kan opnå siden man ikke kan vinne med engang
     if(b > max){
@@ -335,19 +366,19 @@ int Board::negamax(int depth, int a, int b){
             }
     }  
     
-    // TranspositionTable::Entry el;
+    TranspositionTable::Entry el;
 
-    // if (best_value <= originA){
-    //     el.flag = 1;
-    // } 
-    // else if(best_value >= b){
-    //     el.flag = 2;
-    // } 
-    // else{
-    //     el.flag = 0;
-    // }
-    // el.depth = depth;
-    // transTable.put(board+playMask, a, el.depth, el.flag);
+    if (best_value <= originA){
+        el.flag = 1;
+    } 
+    else if(best_value >= b){
+        el.flag = 2;
+    } 
+    else{
+        el.flag = 0;
+    }
+    el.depth = depth;
+    transTable.put(board+playMask, a, el.depth, el.flag);
     
 
     return a;

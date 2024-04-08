@@ -50,7 +50,8 @@ export async function botPlacePiece(brett: Array<Array<number>>): Promise<number
 
 export function checkDraw(brett: Array<Array<number>>){
     if (brett.flat().includes(0)){
-        return false;}
+        return false;
+    }
     else 
     {return true;}
 }

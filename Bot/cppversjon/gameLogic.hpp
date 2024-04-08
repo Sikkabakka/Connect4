@@ -6,6 +6,8 @@
 #include <string>
 #include "transTable.hpp"
 #include <algorithm>
+#include <unordered_map>
+
 
 class Board {
 public:
@@ -15,11 +17,12 @@ public:
     uint64_t full_bottom = 8865353597186;
     uint64_t columnLength = 127;
     int best_move = 10;
-   
+    std::unordered_map<uint64_t, int> earlyLookUpTable;
 
     TranspositionTable transTable = TranspositionTable(16000057);
     bool firstcall = false;
     void initializeBoard();
+    void makeLookUpTable();
     void putTransTable(uint64_t key, int value);
     void printBoard(unsigned long long bitboard);
     void printSelf();
@@ -30,6 +33,7 @@ public:
     void addPiece(int col);
     void removePiece(int col);
     void printWithSymbols();
+    void reset_board();
     void playsequence(const std::string& sequence);
     void removesequence(const std::string& sequence);
     bool checkWin();
