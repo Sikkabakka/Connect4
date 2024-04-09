@@ -62,11 +62,16 @@ int getBestMove(std::string iBrett){
 
 void testing(){
     //ikke fikset nå 
-    int x;
-    std::cout<< "Hvor vil du spille?"<< std::endl;
-    std::cin >> x;
+
+   
     while (!brett.checkWin() && !brett.checkDraw()){
+
+        int x;
+        std::cout<< "Hvor vil du spille?"<< std::endl;
+        std::cin >> x;
+        brett.addPiece(x -1);
         play();
+        brett.printEveryBoard();
     }
 
 }
@@ -75,7 +80,7 @@ int main() {
     brett.playsequence("");
     brett.printEveryBoard();
     brett.transTable.resetTable();
-    
+    testing();
     std::cout<<"\n"<<std::endl;
     return 0;
 }
