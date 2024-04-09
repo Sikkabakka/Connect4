@@ -1,4 +1,4 @@
-#include "transTable.hpp"
+#include "transTable.hpp" 
 
 TranspositionTable::TranspositionTable(int size) {
     table.reserve(size);
