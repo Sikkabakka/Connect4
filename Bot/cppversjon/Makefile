@@ -1,36 +1,38 @@
 
-# BINARY=main
+BINARY=main
 
-# #put in mappe med inclueds etter I.
-# INCDIRS=-I. 
+#put in mappe med inclueds etter I.
+INCLUDE_PATH = -I/usr/local/Cellar/asio/1.28.1/include
 
-# OPT=-O0
-# CODEDIRS=. sourceFiles
-# OBJDIR= objectFiles
-# CFLAGS=-Wall -Wextra -g $(INCDIRS) $(OPT)
+OPT=-O0
+CODEDIRS=. sourceFiles
+OBJDIR= objectFiles
+CFLAGS= -Wall -Wextra -g $(INCLUDE_PATH) $(OPT)
+CFLAGS += $(shell pkg-config --cflags <package_name>)
 
-# CC=clang++
 
-# CFILES=$(foreach D, $(CODEDIRS), $(wildcard $(D)/*.cpp))
-# OBJECTS=$(patsubst %.cpp, $(OBJDIR)/%.o, $(CFILES))
+CC=clang++
 
-# all: $(BINARY)
-# 	@echo "Compiling..."
-# 	@echo "Running..."
-# 	@time ./main
+CFILES= simpleExample.cpp
+OBJECTS=$(patsubst %.cpp, $(OBJDIR)/%.o, $(CFILES))
 
-# $(BINARY): $(OBJECTS)
-# 	$(CC) -o $@ $^
-
-# $(OBJDIR)/%.o: %.cpp
-# 	@mkdir -p $(@D)
-# 	$(CC) $(CFLAGS) -c -o $@ $<
-
-# clean:
-# 	rm -rf $(BINARY) $(OBJECTS)
-
-all:
+all: $(BINARY)
 	@echo "Compiling..."
-	@clang++ -std=c++11 restAPI.cpp -o main -L/opt/homebrew/Cellar/openssl@3/3.2.1/lib -lssl -lcrypto -I/opt/homebrew/Cellar/cpprestsdk/2.10.19/include -I/opt/homebrew/Cellar/boost/1.84.0_1/include -I/opt/homebrew/Cellar/openssl@3/3.2.1/include
 	@echo "Running..."
 	@time ./main
+
+$(BINARY): $(OBJECTS)
+	$(CC) -o $@ $^
+
+$(OBJDIR)/%.o: %.cpp
+	@mkdir -p $(@D)
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+clean:
+	rm -rf $(BINARY) $(OBJECTS)
+
+# all:
+# 	@echo "Compiling..."
+# 	@clang++ connecttome.cpp -std=c++11 -o main 
+# 	@echo "Running..."
+# 	@time ./main
