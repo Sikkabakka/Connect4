@@ -2,7 +2,7 @@
 BINARY=main
 
 #put in mappe med inclueds etter I.
-INCLUDE_PATH = -I/usr/local/Cellar/asio/1.28.1/include
+INCLUDE_PATH = -I//local/Cellar/asio/1.28.1/include
 
 OPT=-O0
 CODEDIRS=. sourceFiles

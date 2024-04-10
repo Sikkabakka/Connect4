@@ -8,6 +8,9 @@ export function createBoard(){
     return brett
 }
 
+function deepCopy(board) {
+    return board.map(row => row.slice());
+}
 
 export function findBottomTile(column: Array<number>){
 
@@ -37,14 +40,15 @@ export function placePiece(board : Array<Array<number>>, team: number, index :nu
 } 
 
 function checkCanWin(brett: Array<Array<number>>, team: number){
+    brett = deepCopy(brett)
     //gå gjennom moves å sjekk om checkWin er true hvis du gjør det movet
     brett.forEach(element => {
 
         let move =  findBottomTile(element)
         if (move != -1){
             if (checkWin(placePiece(brett, team, move))){
-                return move;
-        }
+                return move;}
+            removePiece(brett, move);
         }
     })
     return -1;
@@ -52,7 +56,7 @@ function checkCanWin(brett: Array<Array<number>>, team: number){
 function checkWillLose(brett: Array<Array<number>>){
     //hvis han andre har mulighet til å vinne så blokker
     brett.forEach(element =>{
-        let move =  findBottomTile(element);
+        let move = findBottomTile(element);
 
         if (move != -1){   
 
@@ -66,17 +70,19 @@ function checkWillLose(brett: Array<Array<number>>){
 
 
 function litenMinMax(brett: Array<Array<number>>,  depth: number, team: number){
-
+    brett = deepCopy(brett)
     //skal ikke søke lengre en 3 moves
     if (depth == 0){
         return 0;
     }
     //hvis man kan vinne returner om du har vunnet
-    if (checkCanWin(brett, team) != -1){
+    if (checkWin(brett)){
+        console.log(team, "somebody has won")
         return depth +1
     }
     //hvis draw returner 0 fordi det er "nøytralt"
     if (checkDraw(brett)){
+        console.log("it has been a draw")
         return 0;
     }
 
@@ -90,38 +96,56 @@ function litenMinMax(brett: Array<Array<number>>,  depth: number, team: number){
         if (findBottomTile(element) != -1){
             let move = findBottomTile(element)
             //gjør movet og sjekker hva den beste verdien til motsanderen er, dette vil være det motsatte enn det denne spilleren får
+
             value = -1* (litenMinMax(placePiece(brett, -1, move), depth-1, team*(-1)))
            if (value > best_value){
-                best_value = value;
+                console.log("value was better", value)
 
+                best_value = value;
            }
+           removePiece(brett, move);
         }
     })
+    console.log("returning value: ", best_value," depth:",  depth)
     return best_value;
 }
-// function removePiece(brett: Array<Array<number>>, team: number, index: number){
-//     let removeIndex = (findBottomTile(brett[index]))
+function removePiece(brett: Array<Array<number>>, index: number){
+    let removeIndex = findBottomTile(brett[index])
 
-//     if (removeIndex == -1){
+    if (removeIndex == -1){
+        brett[index][5] == 0;
+    }
+    else {
+        brett[index][removeIndex-1] == 0;
+    }
+    return;
+}
 
-//     }
-// }
+
 function findBestMove(brett: Array<Array<number>>, team: number){
-
+    console.log(brett)
+    brett = deepCopy(brett)
     let best_value = -100000;
     let best_move  = -1
     let value = 0;
-    brett.forEach(element => {
+
+    brett.forEach((element, index) => {
         let move = findBottomTile(element)
         if (move != -1){
-            value = litenMinMax(brett, 3, team)
-
-            if (value > best_value){
-                best_move = move
+            if (checkWin(brett)){
+                console.log(team, "somebody has won")
+                return move
             }
+            value = -1 *litenMinMax(placePiece(brett, team, move), 3, -1*team)
+            
+            if (value > best_value){
+                best_move = index
+            }
+            removePiece(brett, move);
         }
+        
     })
-    if (best_value = 0){
+    if (best_value == 0){
         return -1
     }
     else {
@@ -132,15 +156,18 @@ function findBestMove(brett: Array<Array<number>>, team: number){
 
 
 export async function botPlacePiece(brett: Array<Array<number>>): Promise<number> {
+    brett = deepCopy(brett)
     return new Promise(resolve => {
+        
         let best_move = findBestMove(brett, 1)
         if (best_move != -1){
+            console.log(best_move, "best move found")
             resolve(best_move)
         }
         else{
+            console.log("random move")
             let c = Math.floor(Math.random() * 7);
             resolve(c);
-
         }
     });
 }
@@ -174,7 +201,7 @@ export function checkWin(brett: Array<Array<number>>){
         })
     })
 
-    console.log(toBitboard(secondboard).toString(2))
+
     return (checkbitboard(firstboard) || checkbitboard(secondboard) )}
 
 

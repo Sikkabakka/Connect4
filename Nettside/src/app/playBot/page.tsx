@@ -10,13 +10,16 @@ import { motion } from 'framer-motion';
 const play = () => {
   
   const[board, setBoard] = useState(createBoard());
+
+  console.log("board i starten")
+  console.log(board);
   const [won, setWon] = useState(false);
   const [turn, setTurn] = useState(1);
   const [boardString, setboardString] = useState("");
 
-  useEffect(() =>{
-    console.log("boardString", boardString)
-  }, [boardString])
+  // useEffect(() =>{
+  //   console.log("boardString", boardString)
+  // }, [boardString])
   
   return (
     <div className ="w-screen h-screen bg-zinc-900" 
@@ -137,7 +140,7 @@ function Column({column, board, index, setBoard, setWon, won, setAITurn, aiTurn,
     >
       {column.map((tile, index) => {
         return (
-          <Piece team={tile} index={index} bottomTile={bottomTile} isHovering={hover} />
+          <Piece key={index} team={tile} index={index} bottomTile={bottomTile} isHovering={hover} />
         )
       })}
     </div>
@@ -151,6 +154,8 @@ function Board({board, setBoard, setWon, setTurn, won, turn, setboardString, boa
   const [aiTurn, setAITurn] = useState(false)
 
 
+
+
   //bytt tur når endring på brettet skjer
   useEffect(() =>{
         setTurn(turn*-1)
@@ -159,12 +164,14 @@ function Board({board, setBoard, setWon, setTurn, won, turn, setboardString, boa
   //når ai 
   useEffect(() => {
         const handleBotMove = async () => {
-            const move = await botPlacePiece(board);
-            setBoard(placePiece(board, 1, move));
-            console.log("ai har gjort move")
-            setAITurn(false)
+
+          const move = await botPlacePiece(board);
+          setBoard(placePiece(board, 1, move));
+          console.log("ai har gjort move")
+          setAITurn(false)
           };
     if (aiTurn && !won){
+      console.log("doin handle")
         handleBotMove()
         
     }
@@ -182,7 +189,7 @@ function Board({board, setBoard, setWon, setTurn, won, turn, setboardString, boa
       <div id = "board" className=' h-full w-full  items-center justify-items-center  bg-blue-400  flex'>
         {board.map((tile, index) => {
           return (
-            <Column column ={board[index]} board = {board} index = {index} setBoard ={setBoard} setWon={setWon} won={won} setAITurn={setAITurn}  aiTurn={aiTurn} setboardString={setboardString} boardString={boardString} />
+            <Column key = {index} column ={board[index]} board = {board} index = {index} setBoard ={setBoard} setWon={setWon} won={won} setAITurn={setAITurn}  aiTurn={aiTurn} setboardString={setboardString} boardString={boardString} />
           )
         })}
 

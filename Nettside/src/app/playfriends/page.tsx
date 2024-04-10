@@ -148,7 +148,7 @@ function Board({board, setBoard, setWon, setTurn, won, setDraw} : {board : Array
   
 
   useEffect(() =>{
-
+        console.log(board)
         setTeam(team*-1)
         setTurn(team*-1)
 
