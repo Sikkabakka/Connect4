@@ -1,0 +1,1 @@
+clang++ -shared -o adder.dylib -fPIC main.cpp
