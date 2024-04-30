@@ -7,7 +7,7 @@ A connect 4 website where you can play locally with your friends, or against a c
 Welcome to my Connect 4 project, where I've developed a perfect Connect 4 bot in both C++ and Python, along with a web application to challenge and play against this bot or even play against friends locally. This project is a fun starting project into game AIs and has been a fun challenge for me.
 
 ## Connect 4 bot
-The Connect 4 bot is powered by advanced algorithms and techniques, including:
+The Connect 4 bot is uses advanced algorithms and techniques, including:
 
 - **Negamax with Alpha-Beta Pruning**: The bot employs the negamax  algorithm enhanced with alpha-beta pruning to efficiently search through the game tree and determine the best moves.[Read More](https://en.wikipedia.org/wiki/Negamax)
   
@@ -36,5 +36,13 @@ If you want to run the project locally this is how you would install it on Mac O
 - **Node.js and npm**: Make sure you have Node.js and npm installed. You can download them from [here](https://nodejs.org/en).
 - **Python**: Ensure Python is installed on your system. You can download it from [here](https://www.python.org/downloads/).
 
+**Cloning the repository:**
+
+```bash
+  git clone https://https://github.com/Sikkabakka/Connect4
+```
+```bash
+  
+```
 
 
