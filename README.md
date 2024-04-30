@@ -16,3 +16,16 @@ The Connect 4 bot is powered by advanced algorithms and techniques, including:
 - **Transposition Table**: To avoid redundant calculations and improve search efficiency, a transposition table is implemented for storing previously evaluated positions and their associated scores.[Read More](https://en.wikipedia.org/wiki/Negamax)
   
 - **Lookup Table**: In the early stages of the game, the bot utilizes a lookup table generated with [Pascal Pons' Connect4 solver](https://github.com/PascalPons/connect4), enhancing its decision-making capability in crucial opening moves.
+
+## Bot Versions
+The bot is implemented in c++ and in python:
+- **C++**: The better of the two, has all the differnet optimizations and is playable with reasonable time.
+  
+- **Pyton**:  Initially developed as the project's prototype, the Python version implements the negamax algorithm with alpha-beta pruning. However, due to performance constraints in computational speed i shifted to a more advanced bot in C++.
+
+## Web Application
+The react app is a web application where you can play connect 4. Currently you can play locally against your friends and against the bot if you set it up either on your computer or on a server. Future plans is to make it so you can play online, either random or friends. Would be cool if it could become like chess.com so there is a lot of improvements to be made.
+
+## Installation on Mac os
+If you want to run the project localy
+
