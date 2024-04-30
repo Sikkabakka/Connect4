@@ -37,10 +37,13 @@ If you want to run the project locally this is how you would install it on Mac O
 - **Python**: Ensure Python is installed on your system. You can download it from [here](https://www.python.org/downloads/).
 
 **Cloning the repository:**
-
+1. Open a terminal in the repository where you want the project placed
+2. Clone the repo
 ```bash
   git clone https://https://github.com/Sikkabakka/Connect4
 ```
+
+
 ```bash
   
 ```
