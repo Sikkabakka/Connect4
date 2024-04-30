@@ -24,8 +24,14 @@ The bot is implemented in c++ and in python:
 - **Pyton**:  Initially developed as the project's prototype, the Python version implements the negamax algorithm with alpha-beta pruning. However, due to performance constraints in computational speed i shifted to a more advanced bot in C++.
 
 ## Web Application
-The react app is a web application where you can play connect 4. Currently you can play locally against your friends and against the bot if you set it up either on your computer or on a server. Future plans is to make it so you can play online, either random or friends. Would be cool if it could become like chess.com so there is a lot of improvements to be made.
+The react app is a web application where you can play connect 4. Currently you can play locally against your friends and against the bot if you set it up either on your computer or on a server. 
+Future plans is to make it so you can play online, either random or friends. Would be cool if it could become like chess.com so there is a lot of improvements to be made.
 
 ## Installation on Mac os
-If you want to run the project localy
+If you want to run the project locally this is how you would install it on Mac OS:
+
+   **Prerequisites:**
+
+
+
 
