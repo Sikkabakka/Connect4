@@ -30,8 +30,11 @@ Future plans is to make it so you can play online, either random or friends. Wou
 ## Installation on Mac os
 If you want to run the project locally this is how you would install it on Mac OS:
 
-   **Prerequisites:**
+**Prerequisites:**
 
+-**Git:** Install Git if not already installed. You can download it from [here](https://git-scm.com/downloads).
+-**Node.js and npm**: Make sure you have Node.js and npm installed. You can download them from [here](https://nodejs.org/en).
+-**Python**: Ensure Python is installed on your system. You can download it from [here](https://www.python.org/downloads/).
 
 
 
