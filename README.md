@@ -1,4 +1,5 @@
 # Connect 4 bot
+<img src="https://github.com/Sikkabakka/Connect4/blob/main/Nettside/public/bilder/Icon.png" width="200" height="200" align="right" />
 
 A connect 4 website where you can play locally with your friends, or against a connect 4 bot. 
 
@@ -62,7 +63,23 @@ or
 ```
 
 **Setting up the website**
-1. Open a new terminal.
-2. 
+1. Open a new terminal in the directory where you downloaded the repository
+2. Open the website directory
+```bash
+  cd nettside
+```
+3. Install required packages
+```bash
+  npm install
+```
+4. To run the website:
+```bash
+  npm run dev
+```
+5. This would launch the website on localhost you can see the ip in the terminal
+
+
+## Making changes
+1. install the project
 
 
