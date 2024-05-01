@@ -15,7 +15,7 @@ The Connect 4 bot is uses advanced algorithms and techniques, including:
   
 - **Transposition Table**: To avoid redundant calculations and improve search efficiency, a transposition table is implemented for storing previously evaluated positions and their associated scores.[Read More](https://en.wikipedia.org/wiki/Negamax)
   
-- **Lookup Table**: In the early stages of the game, the bot utilizes a lookup table generated with [Pascal Pons' Connect4 solver](https://github.com/PascalPons/connect4), enhancing its decision-making capability in crucial opening moves.
+- **Lookup Table**: In the early stages of the game, the bot utilizes a lookup table generated with [Pascal Pons' Connect4 solver](https://github.com/PascalPons/connect4), to make it so the first moves dont take an eternity.
 
 ## Bot Versions
 The bot is implemented in c++ and in python:
@@ -38,14 +38,31 @@ If you want to run the project locally this is how you would install it on Mac O
 
 **Cloning the repository:**
 1. Open a terminal in the repository where you want the project placed
-2. Clone the repo
+2. Clone the repository:
 ```bash
   git clone https://https://github.com/Sikkabakka/Connect4
 ```
 
-
+**Setting up the bot**
+1. Open the cpp directory
 ```bash
-  
+    cd bot/cppversjon
 ```
+2. Download flask
+```bash
+  pip3 install flask
+```
+or
+```bash
+  pip install flask
+```
+3. To run the flask api:
+```bash
+  python3 src/app.py
+```
+
+**Setting up the website**
+1. Open a new terminal.
+2. 
 
 
