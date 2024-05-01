@@ -87,8 +87,8 @@ or
 ```bash
   clang++ -std=c++11 -shared -o adder.dylib -fPIC src/*.cpp
 ```
+## License
+[License](LICENSE.txt)
 
-
-```
 
 
