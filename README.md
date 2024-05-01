@@ -79,7 +79,16 @@ or
 5. This would launch the website on localhost you can see the ip in the terminal
 
 
-## Making changes
+## Making changes to the bot
 1. [install](#installation) the project
+2. If you make changes to the python part you can just save it, but if you make changes to the c++ part of the bot, then you have to compile it again
+3. Open a terminal within the cppversjon directory
+4. Use this in to compile the c++ again:
+```bash
+  clang++ -std=c++11 -shared -o adder.dylib -fPIC src/*.cpp
+```
+
+
+```
 
 
