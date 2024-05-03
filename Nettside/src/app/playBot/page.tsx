@@ -11,16 +11,12 @@ const play = () => {
   
   const[board, setBoard] = useState(createBoard());
 
-  console.log("board i starten")
-  console.log(board);
+
   const [won, setWon] = useState(false);
   const [turn, setTurn] = useState(1);
   const [boardString, setboardString] = useState("");
 
-  // useEffect(() =>{
-  //   console.log("boardString", boardString)
-  // }, [boardString])
-  
+
   return (
     <div className ="w-screen h-screen bg-zinc-900" 
       style={{ height: "calc(100vh - 80px)" }}>
@@ -164,14 +160,14 @@ function Board({board, setBoard, setWon, setTurn, won, turn, setboardString, boa
   //når ai 
   useEffect(() => {
         const handleBotMove = async () => {
-
-          const move = await botPlacePiece(board);
-          setBoard(placePiece(board, 1, move));
-          console.log("ai har gjort move")
+          console.log(boardString)
+          const move = await botPlacePiece(boardString);
+          setBoard(placePiece(board, 1, move-1));
+          setboardString(boardString + move.toString());
           setAITurn(false)
           };
     if (aiTurn && !won){
-      console.log("doin handle")
+
         handleBotMove()
         
     }

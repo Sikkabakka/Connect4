@@ -16,18 +16,14 @@ void Board::initializeBoard(){
         if ((i%7)==0){
             boardKey |= (1ULL << (i+1));
     }}
-    printf("making lookuptable\n");
+
     makeLookUpTable();
     }
 
 void Board::makeLookUpTable(){
     earlyLookUpTable.reserve(947761);
     char cwd[1024];
-    if (getcwd(cwd, sizeof(cwd)) != NULL) {
-        printf("Current working dir: %s\n", cwd);
-    } else {
-        perror("getcwd() error");
-    }
+   
     std::ifstream rf("src/earlyPosition.dat", std::ios::out | std::ios::binary);
 
     uint64_t key;
@@ -36,7 +32,7 @@ void Board::makeLookUpTable(){
            rf.read(reinterpret_cast<char*>(&value), sizeof(int))) {
         earlyLookUpTable[key] = value;
     }
-    printf("rf closed\n");
+
     rf.close();
     return;
 }
@@ -299,7 +295,7 @@ int Board::negamax(int depth, int a, int b){
                 
             } catch (const std::out_of_range& e) {
 
-                std::cerr << "Key not found: " << e.what() << std::endl;
+                std::cerr << "Key not found: " << earlyLookUpTable.size()<< e.what() << std::endl;
                 }
     }
     //fix sånn at den sjekker om motstanderen kan vinne neste runde og blokker

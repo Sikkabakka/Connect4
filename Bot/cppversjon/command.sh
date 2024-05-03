@@ -1,1 +1,1 @@
-clang++ -shared -o adder.dylib -fPIC main.cpp
+clang++ -std=c++11 -shared -o adder.dylib -fPIC src/*.cpp

@@ -53,12 +53,14 @@ int play(){
 
 extern "C"{
     int getBestMove(const char* iBrett){
+        std::cout<<"starting"<<std::endl;
 
         brett.transTable.resetTable();
         brett.reset_board();
-    
+        brett.initializeBoard();
+
         brett.playsequence(iBrett);
-        brett.flip_board();
+        
 
         brett.printEveryBoard();
 
@@ -66,9 +68,7 @@ extern "C"{
     }
 }
 
-void testing(){
-    //ikke fikset nå 
-
+void testing(){ 
 
     while (!brett.checkWin() && !brett.checkDraw()){
 

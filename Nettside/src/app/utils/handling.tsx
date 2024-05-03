@@ -155,21 +155,16 @@ function findBestMove(brett: Array<Array<number>>, team: number){
 
 
 
-export async function botPlacePiece(brett: Array<Array<number>>): Promise<number> {
-    brett = deepCopy(brett)
-    return new Promise(resolve => {
-        
-        let best_move = findBestMove(brett, 1)
-        if (best_move != -1){
-            console.log(best_move, "best move found")
-            resolve(best_move)
-        }
-        else{
-            console.log("random move")
-            let c = Math.floor(Math.random() * 7);
-            resolve(c);
-        }
-    });
+export async function botPlacePiece(brett: string): Promise<number> {
+    return fetch('http://127.0.0.1:5000/x', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'text/plain'
+        },
+        body: brett
+    })
+        .then(response => response.text())
+        .then(data => parseInt(data))
 }
 
 
