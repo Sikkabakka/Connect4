@@ -38,3 +38,5 @@ all:
 	@time ./main
 
 
+build:
+	@clang++ -std=c++11 -shared -o adder.dylib -fPIC src/*.cpp
