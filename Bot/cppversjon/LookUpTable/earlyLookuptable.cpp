@@ -36,8 +36,6 @@ Structure splitString(const std::string str){
 
 int main(){
    
-    //go through each of the positions in the output.txt file
-    //and use an appropriate function to add them to the earlyLook vector
 
     earlyLookUpTable.reserve(947761);
 
