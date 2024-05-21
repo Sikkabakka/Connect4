@@ -150,8 +150,6 @@ function Board({board, setBoard, setWon, setTurn, won, turn, setboardString, boa
   const [aiTurn, setAITurn] = useState(false)
 
 
-
-
   //bytt tur når endring på brettet skjer
   useEffect(() =>{
         setTurn(turn*-1)
@@ -181,8 +179,8 @@ function Board({board, setBoard, setWon, setTurn, won, turn, setboardString, boa
   }, [won])
 
   return (
-    <div className="aspect-[1.166/1] lg:w-1/2 md:w-3/4 sm:w-5/6 bg-blue-300 ">
-      <div id = "board" className=' h-full w-full  items-center justify-items-center  bg-blue-400  flex'>
+    <div className="aspect-[1.166/1] lg:w-1/2 md:w-3/4 sm:w-5/6  bg-blue-300 ">
+      <div id = "board" className='h-full w-full  items-center justify-items-center  bg-blue-400  flex'>
         {board.map((tile, index) => {
           return (
             <Column key = {index} column ={board[index]} board = {board} index = {index} setBoard ={setBoard} setWon={setWon} won={won} setAITurn={setAITurn}  aiTurn={aiTurn} setboardString={setboardString} boardString={boardString} />

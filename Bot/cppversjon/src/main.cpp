@@ -77,6 +77,7 @@ void testing(){
         std::cin >> x;
         brett.addPiece(x -1);
         play();
+        printf("%d", brett.nodes);
         brett.printEveryBoard();
     }
 

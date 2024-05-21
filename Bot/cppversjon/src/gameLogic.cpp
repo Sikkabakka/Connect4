@@ -242,6 +242,7 @@ unsigned long long Board::full_mask(int col) {
 int Board::countMoves(){
     int counter = 0;
     for(int i = 0; i<49; i++){
+        std::cout << "uwu" << std::endl;
         if ((1ULL <<i) & playMask){
             counter++;
         }
