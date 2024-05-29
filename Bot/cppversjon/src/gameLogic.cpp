@@ -242,7 +242,6 @@ unsigned long long Board::full_mask(int col) {
 int Board::countMoves(){
     int counter = 0;
     for(int i = 0; i<49; i++){
-
         if ((1ULL <<i) & playMask){
             counter++;
         }
