@@ -1,3 +1,4 @@
+import { findAllInRenderedTree } from "react-dom/test-utils";
 
 
 export function createBoard(){
@@ -153,6 +154,18 @@ function findBestMove(brett: Array<Array<number>>, team: number){
     }
 }
 
+function checkColumn(brett: string, move : number){
+    let counter = 0;
+    for(let i = 0; i < brett.length; i++){
+        if (parseInt(brett[i]) == move){
+            counter++;
+        }
+    }
+    if (counter < 6){
+        return true
+    }
+    return false
+}
 
 
 export async function botPlacePiece(brett: string): Promise<number> {
@@ -166,6 +179,19 @@ export async function botPlacePiece(brett: string): Promise<number> {
         .then(response => response.text())
         .then(data => parseInt(data))
 }
+    // let move;
+    // while(not_found_move){
+    //     move = Math.floor(Math.random()*7)
+    //     if (checkColumn(brett, move)){
+    //         not_found_move = false
+
+    //     }
+    // }
+    // await new Promise(resolve => setTimeout(resolve, 1000));
+
+    // return move
+ 
+// }
 
 
 export function checkDraw(brett: Array<Array<number>>){

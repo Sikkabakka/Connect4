@@ -12,6 +12,8 @@ CORS(app)
 
 @app.post('/x')
 def post():
+    print("post request")
+    print(type(request.data))
     data = request.data.decode('utf-8')
     c_data = ctypes.create_string_buffer(data.encode())  
     result = lib.getBestMove(c_data)

@@ -9,7 +9,7 @@ const signin = () => {
 
 
   useEffect(() => {
-    console.log(email, password)
+
   }, [email, password])
 
 
@@ -20,7 +20,7 @@ const signin = () => {
       await signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             const user = userCredential.user;
-            console.log(user);
+
 
 
         })

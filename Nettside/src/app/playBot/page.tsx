@@ -132,7 +132,15 @@ function Column({column, board, index, setBoard, setWon, won, setAITurn, aiTurn,
 
         setHover(false);
       }}
-      onClick={() => {!won &&!aiTurn && !full && setBoard(placePiece(board,-1, index)); setBottomTile(findBottomTile(column)); setWon(checkWin(board)); setboardString(boardString + (index+1).toString());  !won && setAITurn(true) }}
+      onClick={() => {!won 
+                      &&!aiTurn 
+                      && !full 
+                      && setBoard(placePiece(board,-1, index)); 
+                      setBottomTile(findBottomTile(column));
+                      setWon(checkWin(board));
+                      setboardString(boardString + (index+1).toString()); 
+                      !won && setAITurn(true) }}
+
     >
       {column.map((tile, index) => {
         return (
@@ -150,12 +158,12 @@ function Board({board, setBoard, setWon, setTurn, won, turn, setboardString, boa
   const [aiTurn, setAITurn] = useState(false)
 
 
-  //bytt tur når endring på brettet skjer
+
   useEffect(() =>{
         setTurn(turn*-1)
   },[board])
 
-  //når ai 
+
   useEffect(() => {
         const handleBotMove = async () => {
           console.log(boardString)
@@ -171,7 +179,7 @@ function Board({board, setBoard, setWon, setTurn, won, turn, setboardString, boa
     }
   }, [aiTurn])
 
-  //hvis noen vinner så setter den tur til den som har vunnet
+
   useEffect(() => {
     if (won){
       setTurn(turn)
