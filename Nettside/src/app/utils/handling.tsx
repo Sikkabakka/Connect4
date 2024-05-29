@@ -169,29 +169,20 @@ function checkColumn(brett: string, move : number){
 
 
 export async function botPlacePiece(brett: string): Promise<number> {
-    return fetch('http://127.0.0.1:5000/x', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'text/plain'
-        },
-        body: brett
-    })
-        .then(response => response.text())
-        .then(data => parseInt(data))
-}
-    // let move;
-    // while(not_found_move){
-    //     move = Math.floor(Math.random()*7)
-    //     if (checkColumn(brett, move)){
-    //         not_found_move = false
+    let move;
+    let not_found_move = true;
+    while(not_found_move){
+        move = Math.floor(Math.random()*7) +1
+        if (checkColumn(brett, move)){
+            not_found_move = false
 
-    //     }
-    // }
-    // await new Promise(resolve => setTimeout(resolve, 1000));
+        }
+    }
+    await new Promise(resolve => setTimeout(resolve, 1000));
 
-    // return move
+    return Number(move)
  
-// }
+}
 
 
 export function checkDraw(brett: Array<Array<number>>){

@@ -168,15 +168,19 @@ function Board({board, setBoard, setWon, setTurn, won, turn, setboardString, boa
         const handleBotMove = async () => {
           console.log(boardString)
           const move = await botPlacePiece(boardString);
+          console.log(move)
           setBoard(placePiece(board, 1, move-1));
           setboardString(boardString + move.toString());
           setAITurn(false)
+     
           };
+  
     if (aiTurn && !won){
 
         handleBotMove()
         
     }
+  
   }, [aiTurn])
 
 
