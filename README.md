@@ -28,65 +28,6 @@ The bot is implemented in c++ and in python:
 The react app is a web application where you can play connect 4. Currently you can play locally against your friends and against the bot if you set it up either on your computer or on a server. 
 Future plans is to make it so you can play online, either random or friends. Would be cool if it could become like chess.com so there is a lot of improvements to be made.
 
-## Installation on Mac os <a id="installation"></a>
-If you want to run the project locally this is how you would install it on Mac OS:
-
-**Prerequisites:**
-
-- **Git:** Install Git if not already installed. You can download it from [here](https://git-scm.com/downloads).
-- **Node.js and npm**: Make sure you have Node.js and npm installed. You can download them from [here](https://nodejs.org/en).
-- **Python**: Ensure Python is installed on your system. You can download it from [here](https://www.python.org/downloads/).
-
-**Cloning the repository:**
-1. Open a terminal in the repository where you want the project placed
-2. Clone the repository:
-```bash
-  git clone https://https://github.com/Sikkabakka/Connect4
-```
-
-**Setting up the bot**
-1. Open the cpp directory
-```bash
-    cd bot/cppversjon
-```
-2. Download flask
-```bash
-  pip3 install flask
-```
-or
-```bash
-  pip install flask
-```
-3. To run the flask api:
-```bash
-  python3 src/app.py
-```
-
-**Setting up the website**
-1. Open a new terminal in the directory where you downloaded the repository
-2. Open the website directory
-```bash
-  cd nettside
-```
-3. Install required packages
-```bash
-  npm install
-```
-4. To run the website:
-```bash
-  npm run dev
-```
-5. This would launch the website on localhost you can see the ip in the terminal
-
-
-## Making changes to the bot
-1. [install](#installation) the project
-2. If you make changes to the python part you can just save it, but if you make changes to the c++ part of the bot, then you have to compile it again
-3. Open a terminal within the cppversjon directory
-4. Use this in to compile the c++ again:
-```bash
-  clang++ -std=c++11 -shared -o adder.dylib -fPIC src/*.cpp
-```
 ## License
 [License](LICENSE)
 
