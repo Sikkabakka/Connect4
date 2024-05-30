@@ -41,7 +41,7 @@ Future plans is to make it so you can play online, either random or friends. Wou
 ```bash
 git clone https://github.com/Sikkabakka/Connect4 
 ```
-### Downloading node modules
+### Setting up the website
   1. Open the react folder
 ```bash
 cd Nettside
@@ -49,6 +49,17 @@ cd Nettside
 2. Download node modules
 ```bash
 npm i
+```
+3. Run the website with
+```bash
+npm run dev
+```
+4. The website will often be run on https://localhost:3000 but can be different. The link will be written in the terminal
+
+### Setting up the bot
+ 1. Open the bot folder
+```bash
+  
 ```
 
 ## License
