@@ -28,6 +28,64 @@ The bot is implemented in c++ and in python:
 The react app is a web application where you can play connect 4. Currently you can play locally against your friends and against the bot if you set it up either on your computer or on a server. 
 Future plans is to make it so you can play online, either random or friends. Would be cool if it could become like chess.com so there is a lot of improvements to be made.
 
+## How to install on Mac os
+
+### Prerequisite
+- **Git:** Install Git if not already installed. You can download it from [here](https://git-scm.com/downloads).
+- **Node.js and npm**: Make sure you have Node.js and npm installed. You can download them from [here](https://nodejs.org/en).
+- **Python**: Ensure Python is installed on your system. You can download it from [here](https://www.python.org/downloads/).
+
+### Cloning repository
+  1. Open up the directory you want to have the project
+  2. Clone the project with git clone
+```bash
+git clone https://github.com/Sikkabakka/Connect4 
+```
+### Setting up the website
+  1. Open the react folder
+```bash
+cd Nettside
+```
+2. Download node modules
+```bash
+npm i
+```
+3. Run the website with
+```bash
+npm run dev
+```
+4. The website will often be run on https://localhost:3000 but can be different. The link will be written in the terminal
+
+### Setting up the bot
+ 1. Open the bot folder
+```bash
+  cd bot/cppversjon
+```
+2. Make sure you have flask and flask_cors libraries downloaded
+```bash
+pip3 install flask flask_cors
+```
+or 
+```bash
+pip install flask flas_cors
+```
+3. Run the python file to start the flask api
+```bash
+python3 src/app.py
+```
+
+## Making changes to the bot
+ If you want to make changes to the c++ code for the bot you will need to recompile the dynamic library. This isn't neccessary if you make changes to anything other than the C++. 
+ You can do this by utilizing the makefile
+ ```bash
+make build
+```
+or you can write this command into the terminal
+```bash
+clang++ -std=c++11 -shared -o adder.dylib -fPIC src/*.cpp
+```
+if you use another OS than Mac os then you should change out "clang++" to "g++"
+
 ## License
 [License](LICENSE)
 
