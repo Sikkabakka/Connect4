@@ -39,7 +39,7 @@ Future plans is to make it so you can play online, either random or friends. Wou
   1. Open up the directory you want to have the project
   2. Clone the project with git clone
 ```bash
-Git clone https://github.com/Sikkabakka/Connect4 
+git clone https://github.com/Sikkabakka/Connect4 
 ```
 ### Downloading node modules
   1. Open the react folder
@@ -48,7 +48,7 @@ cd Nettside
 ```
 2. Download node modules
 ```bash
-Npm i
+npm i
 ```
 
 ## License
