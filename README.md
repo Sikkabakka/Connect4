@@ -28,6 +28,9 @@ The bot is implemented in c++ and in python:
 The react app is a web application where you can play connect 4. Currently you can play locally against your friends and against the bot if you set it up either on your computer or on a server. 
 Future plans is to make it so you can play online, either random or friends. Would be cool if it could become like chess.com so there is a lot of improvements to be made.
 
+## How to install on Mac os
+# Requirements
+ -**Git:**
 ## License
 [License](LICENSE)
 
