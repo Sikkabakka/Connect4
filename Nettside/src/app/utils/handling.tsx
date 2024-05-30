@@ -1,3 +1,5 @@
+import { METHODS } from "http";
+import { headers } from "next/headers";
 import { findAllInRenderedTree } from "react-dom/test-utils";
 
 
@@ -169,20 +171,17 @@ function checkColumn(brett: string, move : number){
 
 
 export async function botPlacePiece(brett: string): Promise<number> {
-    let move;
-    let not_found_move = true;
-    while(not_found_move){
-        move = Math.floor(Math.random()*7) +1
-        if (checkColumn(brett, move)){
-            not_found_move = false
-
-        }
+    console.log("should send request");
+    
+    return (fetch("http://127.0.0.1:5000/getBestMove", {
+        method: "Post", 
+        body: brett
+    })
+    .then(response => response.text())
+    .then(data => parseInt(data)))
     }
-    await new Promise(resolve => setTimeout(resolve, 1000));
 
-    return Number(move)
- 
-}
+
 
 
 export function checkDraw(brett: Array<Array<number>>){
