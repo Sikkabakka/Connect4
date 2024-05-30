@@ -71,6 +71,18 @@ pip install flask flas_cors
 ```
 3. Run the python file to start the flask api
 ```bash
+python3 src/app.py
+```
+
+## Making changes to the bot
+ If you want to make changes to the c++ code for the bot you will need to recompile the dynamic library. This isn't neccessary if you make changes to anything other than the C++. 
+ You can do this by utilizing the makefile
+ ```bash
+make build
+```
+or
+You can write this command into the terminal
+```bash
 
 ```
 
