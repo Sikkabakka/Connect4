@@ -41,6 +41,16 @@ Future plans is to make it so you can play online, either random or friends. Wou
 ```bash
 Git clone https://github.com/Sikkabakka/Connect4 
 ```
+### Downloading node modules
+  1. Open the react folder
+```bash
+cd Nettside
+```
+2. Download node modules
+```bash
+Npm i
+```
+
 ## License
 [License](LICENSE)
 
