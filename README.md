@@ -80,11 +80,11 @@ python3 src/app.py
  ```bash
 make build
 ```
-or
-You can write this command into the terminal
+or you can write this command into the terminal
 ```bash
 clang++ -std=c++11 -shared -o adder.dylib -fPIC src/*.cpp
 ```
+if you use another OS than Mac os then you should change out "clang++" to "g++"
 
 ## License
 [License](LICENSE)
