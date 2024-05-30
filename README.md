@@ -38,9 +38,9 @@ Future plans is to make it so you can play online, either random or friends. Wou
 ### Cloning repository
   1. Open up the directory you want to have the project
   2. Clone the project with git clone
-'''bash
-Git clone 
-'''
+```bash
+Git clone https://github.com/Sikkabakka/Connect4 
+```
 ## License
 [License](LICENSE)
 
