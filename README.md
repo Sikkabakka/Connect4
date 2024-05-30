@@ -29,8 +29,11 @@ The react app is a web application where you can play connect 4. Currently you c
 Future plans is to make it so you can play online, either random or friends. Would be cool if it could become like chess.com so there is a lot of improvements to be made.
 
 ## How to install on Mac os
+
 # Requirements
- -**Git:** You have to have git installed
+- **Git:** Install Git if not already installed. You can download it from [here](https://git-scm.com/downloads).
+- **Node.js and npm**: Make sure you have Node.js and npm installed. You can download them from [here](https://nodejs.org/en).
+- **Python**: Ensure Python is installed on your system. You can download it from [here](https://www.python.org/downloads/).
 ## License
 [License](LICENSE)
 
