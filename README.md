@@ -34,6 +34,13 @@ Future plans is to make it so you can play online, either random or friends. Wou
 - **Git:** Install Git if not already installed. You can download it from [here](https://git-scm.com/downloads).
 - **Node.js and npm**: Make sure you have Node.js and npm installed. You can download them from [here](https://nodejs.org/en).
 - **Python**: Ensure Python is installed on your system. You can download it from [here](https://www.python.org/downloads/).
+
+### Cloning repository
+  1. Open up the directory you want to have the project
+  2. Clone the project with git clone
+'''bash
+Git clone 
+'''
 ## License
 [License](LICENSE)
 
