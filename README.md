@@ -30,7 +30,7 @@ Future plans is to make it so you can play online, either random or friends. Wou
 
 ## How to install on Mac os
 # Requirements
- -**Git:**
+ -**Git:** You have to have git installed
 ## License
 [License](LICENSE)
 
