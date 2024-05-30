@@ -59,7 +59,19 @@ npm run dev
 ### Setting up the bot
  1. Open the bot folder
 ```bash
-  
+  cd bot/cppversjon
+```
+2. Make sure you have flask and flask_cors libraries downloaded
+```bash
+pip3 install flask flask_cors
+```
+or 
+```bash
+pip install flask flas_cors
+```
+3. Run the python file to start the flask api
+```bash
+
 ```
 
 ## License
